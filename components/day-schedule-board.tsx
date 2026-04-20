@@ -4,7 +4,12 @@ import { RescheduleHistoryRecord } from '@/lib/reschedule-history';
 import { ScheduleDayResult } from '@/lib/types';
 
 function overlaps(slotStart: string, slotEnd: string, itemStart: string, itemEnd: string) {
-  return itemStart < slotEnd && itemEnd > slotStart;
+  const slotStartMs = new Date(slotStart).getTime();
+  const slotEndMs = new Date(slotEnd).getTime();
+  const itemStartMs = new Date(itemStart).getTime();
+  const itemEndMs = new Date(itemEnd).getTime();
+
+  return itemStartMs < slotEndMs && itemEndMs > slotStartMs;
 }
 
 type DayScheduleBoardProps = {
