@@ -280,12 +280,14 @@ export function updateSalonSettings(
   accessToken: string,
   body: Partial<SalonAdminSettings>,
 ) {
+  const { id: _id, ...payload } = body;
+
   return authorizedJson<SalonAdminSettings>(
     '/api/v1/admin/settings/salon',
     accessToken,
     {
       method: 'PUT',
-      body,
+      body: payload,
     },
   );
 }
